@@ -1,7 +1,7 @@
 import logo from "../assets/Netflix_Logo_PMS.png"
 const Header = () => {
   return (
-    <div className="w-full px-10 py-5 flex justify-between items-center z-20">
+    <div className="absolute w-full px-10 py-5 flex justify-between items-center z-20">
         <img src={logo} alt="logo" className="w-36 cursor-pointer" />
 
         <div className="flex items-center gap-4">
