@@ -10,9 +10,9 @@ const Header = () => {
           <option>English</option>
           <option>हिंदी</option>
         </select>
-        <button className="bg-red-600 px-4 py-2 rounded text-white font-semibold">
+        {/* <button className="bg-red-600 px-4 py-2 rounded text-white font-semibold">
           <Link to={"/signin"}>Sign In</Link>
-        </button>
+        </button> */}
       </div>
     </div>
   );

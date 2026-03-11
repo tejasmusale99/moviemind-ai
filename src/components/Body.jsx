@@ -1,11 +1,12 @@
 import Header from "./Header";
-import Hero from "./Hero";
+import SignIn from "./SignIn";
+// import Hero from "./Hero";
 
 const Body = () => {
   return(
     <div className="appLayout">
         <Header />
-        <Hero />
+        <SignIn />
     </div>
   ) 
 };
