@@ -16,5 +16,9 @@ export const checkValidData = (email, password) => {
       "Password must include uppercase, lowercase, number, special character and be 8+ characters long.";
   }
 
+  if(isEmailValid && isPasswordValid) {
+    errors.success = "Validation successful!";
+  }
+
   return errors;
 };
