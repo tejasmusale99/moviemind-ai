@@ -1,9 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import backgroundImg from "../assets/Front Background image.jpg";
 import Header from "./Header";
+import { checkValidData } from "../utils/validation";
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+
+const emailRef = useRef(null);
+const passwordRef = useRef(null);
+
+
+const handleformSubmit = (e) => {    
+    // Handle form submission logic here
+    e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const validationError = checkValidData(email, password);
+    console.log(validationError);
+    
+  }
 
   const handleToggleSign = () => {
     setIsSignIn(!isSignIn);
@@ -35,13 +50,15 @@ const SignIn = () => {
               type="email"
               placeholder="Email"
               className="p-3 rounded bg-black/80 border border-gray-50"
+              ref={emailRef}
             />
             <input
               type="password"
               placeholder="Password"
               className="p-3 rounded bg-black/80 border border-gray-50"
+              ref={passwordRef}
             />
-            <button className="bg-red-600 py-3 rounded font-semibold mt-2 font-bold cursor-pointer">
+            <button className="bg-red-600 py-3 rounded font-semibold mt-2 font-bold cursor-pointer" onClick={handleformSubmit}>
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
             {/* 
