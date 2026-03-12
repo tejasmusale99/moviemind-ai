@@ -5,20 +5,20 @@ import { checkValidData } from "../utils/validation";
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const [validationFieldError, setValidationFieldError] = useState({});
 
-const emailRef = useRef(null);
-const passwordRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-
-const handleformSubmit = (e) => {    
+  const handleformSubmit = (e) => {
     // Handle form submission logic here
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const validationError = checkValidData(email, password);
-    console.log(validationError);
-    
-  }
+    // console.log(validationError);
+    setValidationFieldError(validationError);
+  };
 
   const handleToggleSign = () => {
     setIsSignIn(!isSignIn);
@@ -52,13 +52,26 @@ const handleformSubmit = (e) => {
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={emailRef}
             />
+            {validationFieldError.email && (
+              <p className="text-red-500 text-sm">
+                {validationFieldError.email}
+              </p>
+            )}
             <input
               type="password"
               placeholder="Password"
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={passwordRef}
             />
-            <button className="bg-red-600 py-3 rounded font-semibold mt-2 font-bold cursor-pointer" onClick={handleformSubmit}>
+            {validationFieldError.password && (
+              <p className="text-red-500 text-sm">
+                {validationFieldError.password}
+              </p>
+            )}
+            <button
+              className="bg-red-600 py-3 rounded font-semibold mt-2 font-bold cursor-pointer"
+              onClick={handleformSubmit}
+            >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
             {/* 
