@@ -9,13 +9,14 @@ const SignIn = () => {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const nameRef = useRef(null);
 
   const handleformSubmit = (e) => {
-    // Handle form submission logic here
+    // Handle form submission logic
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
-    const validationError = checkValidData(email, password);
+    const validationError = checkValidData(email, password, isSignIn, name);
     // console.log(validationError);
     setValidationFieldError(validationError);
   };
@@ -43,6 +44,7 @@ const SignIn = () => {
                 type="text"
                 placeholder="Full Name"
                 className="p-3 rounded bg-black/80 border border-gray-50"
+                ref={nameRef}
               />
             )}
 
