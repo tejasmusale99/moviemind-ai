@@ -16,6 +16,7 @@ const SignIn = () => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    const name = nameRef.current?.value;
     const validationError = checkValidData(email, password, isSignIn, name);
     // console.log(validationError);
     setValidationFieldError(validationError);
@@ -46,6 +47,12 @@ const SignIn = () => {
                 className="p-3 rounded bg-black/80 border border-gray-50"
                 ref={nameRef}
               />
+            )}
+
+            {validationFieldError.name && (
+              <p className="text-red-500 text-sm">
+                {validationFieldError.name}
+              </p>
             )}
 
             <input

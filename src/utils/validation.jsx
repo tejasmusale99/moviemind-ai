@@ -8,10 +8,7 @@ export const checkValidData = (email, password, isSignIn, name) => {
       password,
     );
 
-  // Full name validation only for signup
-  if (!isSignIn && (!name || name.length < 3)) {
-    errors.name = "Full name must be at least 3 characters";
-  }
+  const isNameValid = /^[A-Za-z ]{3,30}$/.test(name);
 
   if (!isEmailValid) {
     errors.email = "Email is not valid";
@@ -26,5 +23,10 @@ export const checkValidData = (email, password, isSignIn, name) => {
     errors.success = "Validation successful!";
   }
 
+  if (!isSignIn && !isNameValid) {
+    errors.name =
+      "Full name must contain only letters and be 3–30 characters long.";
+  }
+  
   return errors;
 };
