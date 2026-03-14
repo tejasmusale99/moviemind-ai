@@ -18,7 +18,6 @@ const SignIn = () => {
     const password = passwordRef.current.value;
     const name = nameRef.current?.value;
     const validationError = checkValidData(email, password, isSignIn, name);
-    // console.log(validationError);
     setValidationFieldError(validationError);
   };
 
