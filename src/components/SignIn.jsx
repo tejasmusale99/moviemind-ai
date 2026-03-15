@@ -42,6 +42,7 @@ const SignIn = () => {
             {!isSignIn && (
               <input
                 type="text"
+                required
                 placeholder="Full Name"
                 className="p-3 rounded bg-black/80 border border-gray-50"
                 ref={nameRef}
@@ -56,6 +57,7 @@ const SignIn = () => {
 
             <input
               type="email"
+              required
               placeholder="Email"
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={emailRef}
@@ -67,6 +69,7 @@ const SignIn = () => {
             )}
             <input
               type="password"
+              required
               placeholder="Password"
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={passwordRef}
