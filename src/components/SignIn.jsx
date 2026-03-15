@@ -5,7 +5,7 @@ import { checkValidData } from "../utils/validation";
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
-  const [validationFieldError, setValidationFieldError] = useState({});
+  const [error, setError] = useState({});
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -17,8 +17,9 @@ const SignIn = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const name = nameRef.current?.value;
-    const validationError = checkValidData(email, password, isSignIn, name);
-    setValidationFieldError(validationError);
+    const message = checkValidData(email, password, isSignIn, name);
+    setError(message);
+    if (message) return;
   };
 
   const handleToggleSign = () => {
@@ -49,11 +50,7 @@ const SignIn = () => {
               />
             )}
 
-            {validationFieldError.name && (
-              <p className="text-red-500 text-sm">
-                {validationFieldError.name}
-              </p>
-            )}
+            {error.name && <p className="text-red-500 text-sm">{error.name}</p>}
 
             <input
               type="email"
@@ -62,10 +59,8 @@ const SignIn = () => {
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={emailRef}
             />
-            {validationFieldError.email && (
-              <p className="text-red-500 text-sm">
-                {validationFieldError.email}
-              </p>
+            {error.email && (
+              <p className="text-red-500 text-sm">{error.email}</p>
             )}
             <input
               type="password"
@@ -74,10 +69,8 @@ const SignIn = () => {
               className="p-3 rounded bg-black/80 border border-gray-50"
               ref={passwordRef}
             />
-            {validationFieldError.password && (
-              <p className="text-red-500 text-sm">
-                {validationFieldError.password}
-              </p>
+            {error.password && (
+              <p className="text-red-500 text-sm">{error.password}</p>
             )}
             <button
               className="bg-red-600 py-3 rounded font-semibold mt-2 font-bold cursor-pointer"
