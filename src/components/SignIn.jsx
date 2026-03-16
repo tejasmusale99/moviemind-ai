@@ -19,7 +19,13 @@ const SignIn = () => {
     const name = nameRef.current?.value;
     const message = checkValidData(email, password, isSignIn, name);
     setError(message);
-    if (message) return;
+    if (Object.keys(message).length > 0) return;
+
+    if(!isSignIn) {
+      // Sign up logic
+    } else {
+      // Sign in logic
+    }
   };
 
   const handleToggleSign = () => {
