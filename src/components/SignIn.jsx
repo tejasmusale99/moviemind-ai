@@ -2,7 +2,10 @@ import { useRef, useState } from "react";
 import backgroundImg from "../assets/Front Background image.jpg";
 import Header from "./Header";
 import { checkValidData } from "../utils/validation";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../utils/firebase";
 
 const SignIn = () => {
@@ -25,7 +28,7 @@ const SignIn = () => {
 
     if (!isSignIn) {
       // Sign up logic
-      createUserWithEmailAndPassword(auth, email, password,name)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
@@ -33,13 +36,23 @@ const SignIn = () => {
           // ...
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setError(errorCode, " ", errorMessage)
+          setError({ firebase: error.message });
           // ..
         });
     } else {
       // Sign in logic
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          setError({ firebase: error.message });
+          // ..
+        });
     }
   };
 
@@ -99,13 +112,9 @@ const SignIn = () => {
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
-            {/* 
-            <p className="text-center text-gray-400">OR</p>
-
-            <button className="bg-white/30 py-3 rounded font-bold">
-              {" "}
-              Use a sign-in code{" "}
-            </button> */}
+            {error.firebase && (
+              <p className="text-red-500 text-sm">{error.firebase}</p>
+            )}
 
             <p className="underline text-md text-white-400 mt-2 cursor-pointer text-center font-medium">
               Forgot password?
