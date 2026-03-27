@@ -30,28 +30,22 @@ const SignIn = () => {
       // Sign up logic
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
           console.log(user);
-          // ...
         })
         .catch((error) => {
           setError({ firebase: error.message });
-          // ..
         });
     } else {
       // Sign in logic
 
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
           console.log(user);
-          // ...
         })
         .catch((error) => {
           setError({ firebase: error.message });
-          // ..
         });
     }
   };
