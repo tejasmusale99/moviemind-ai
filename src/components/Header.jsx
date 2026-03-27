@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/Netflix_Logo_PMS.png";
+import { useSelector } from "react-redux";
 const Header = () => { 
+    const user = useSelector((store) => store.user);
+
+  console.log(user);
   return (
     <div className="absolute w-full px-10 py-5 flex justify-between items-center z-20">
       <Link to={"/"}><img src={logo} alt="logo" className="w-36 cursor-pointer" /></Link>
