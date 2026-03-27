@@ -7,6 +7,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -15,6 +17,8 @@ const SignIn = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   const handleformSubmit = (e) => {
     // Handle form submission logic
@@ -31,7 +35,8 @@ const SignIn = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          dispatch(addUser(user))
+          // console.log(user);
         })
         .catch((error) => {
           setError({ firebase: error.message });
