@@ -1,33 +1,39 @@
-import { useState, useEffect, use } from "react";
+// import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+// import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import logo from "../assets/Netflix_Logo_PMS.png";
 import { signOut } from "firebase/auth";
+import { useSelector } from "react-redux";
+import userAvtar from "../utils/images/avtar user.jpg";
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const Navigate = useNavigate();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
+  const Userstore = useSelector((store) => store.user);
+
+  console.log(Userstore?.displayName);
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setIsLoggedIn(true);
+  //     } else {
+  //       setIsLoggedIn(false);
+  //     }
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
 
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        Navigate("/")
+        Navigate("/");
       })
-      .catch((error) => {
+      .catch(() => {
         // An error happened.
       });
   };
@@ -38,10 +44,13 @@ const Header = () => {
         <img src={logo} alt="logo" className="w-36 cursor-pointer" />
       </Link>
 
-      {isLoggedIn && (
+      {Userstore && (
         <div className="flex items-center gap-4">
+          <img src={userAvtar} alt="userAvtar" className="w-10 h-10" />
+          <h3>{Userstore?.displayName}</h3>
+
           <button
-            className="bg-red-600 px-4 py-2 rounded text-white font-semibold"
+            className="bg-red-600 px-4 py-2 rounded text-white font-semibold cursor-pointer text-sm"
             onClick={handleSignOut}
           >
             Sign Out

@@ -5,6 +5,7 @@ import { checkValidData } from "../utils/validation";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +34,18 @@ const SignIn = () => {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
+          updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              navigate("/browse");
+            })
+            .catch(() => {
+              // An error occurred
+              // ...
+            });
+
           console.log(user);
         })
         .catch((error) => {
