@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Header from "./Header";
-import SignIn from "./SignIn";
 // import Hero from "./Hero";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -27,7 +26,6 @@ const Body = () => {
   return (
     <div className="appLayout">
       <Header />
-      <SignIn />
       <Browse />
     </div>
   );
