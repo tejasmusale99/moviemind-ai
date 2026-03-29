@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/Netflix_Logo_PMS.png";
-import { useSelector } from "react-redux";
+
 const Header = () => { 
   return (
     <div className="absolute w-full px-10 py-5 flex justify-between items-center z-20">
