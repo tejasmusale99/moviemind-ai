@@ -1,6 +1,4 @@
-// import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import logo from "../assets/Netflix_Logo_PMS.png";
 import { signOut } from "firebase/auth";
@@ -8,24 +6,11 @@ import { useSelector } from "react-redux";
 import userAvtar from "../utils/images/avtar user.jpg";
 
 const Header = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const Navigate = useNavigate();
 
   const Userstore = useSelector((store) => store.user);
 
   console.log(Userstore?.displayName);
-
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       setIsLoggedIn(true);
-  //     } else {
-  //       setIsLoggedIn(false);
-  //     }
-  //   });
-  //   return () => unsubscribe();
-  // }, []);
 
   const handleSignOut = () => {
     signOut(auth)
