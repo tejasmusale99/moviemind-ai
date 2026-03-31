@@ -8,12 +8,15 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-
+import { userAvtar } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [error, setError] = useState({});
 
+  const dispatch = useDispatch();
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -36,10 +39,19 @@ const SignIn = () => {
           const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: name,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            photoURL: userAvtar,
           })
             .then(() => {
-              
+              const user = auth.currentUser;
+
+              dispatch(
+                addUser({
+                  uid: user.uid,
+                  email: user.email,
+                  displayName: user.displayName,
+                  photoURL: user.photoURL,
+                }),
+              );
             })
             .catch(() => {
               // An error occurred
