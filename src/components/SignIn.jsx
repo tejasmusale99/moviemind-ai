@@ -8,12 +8,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+
 
 const SignIn = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [error, setError] = useState({});
-  const navigate = useNavigate();
+
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -39,7 +39,7 @@ const SignIn = () => {
             photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
-              navigate("/browse");
+              
             })
             .catch(() => {
               // An error occurred
@@ -57,7 +57,6 @@ const SignIn = () => {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {

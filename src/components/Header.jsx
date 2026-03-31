@@ -1,9 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import logo from "../assets/Netflix_Logo_PMS.png";
-import { signOut } from "firebase/auth";
-import { useSelector } from "react-redux";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 import userAvtar from "../utils/images/avtar user.jpg";
+import { useEffect } from "react";
+import { addUser } from "../utils/userSlice";
+import { removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const Navigate = useNavigate();
@@ -12,16 +15,32 @@ const Header = () => {
 
   console.log(Userstore?.displayName);
 
+  const dispatch = useDispatch()
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        Navigate("/");
       })
       .catch(() => {
         // An error happened.
       });
   };
+
+    useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+                Navigate("/browse");
+      } else {
+        // User is signed out
+        dispatch(removeUser());
+           Navigate("/");
+      }
+    });
+  }, []);
 
   return (
     <div className="absolute w-full px-10 py-5 flex justify-between items-center z-20">
