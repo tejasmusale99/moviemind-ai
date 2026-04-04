@@ -13,7 +13,7 @@ const Header = () => {
 
   const Userstore = useSelector((store) => store.user);
 
-  console.log(Userstore);
+  // console.log(Userstore);
 
   const dispatch = useDispatch();
 
