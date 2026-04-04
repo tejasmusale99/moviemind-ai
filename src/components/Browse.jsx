@@ -1,4 +1,5 @@
 import useFetchNowPlaying from "../hooks/useFetchNowPlaying";
+import MainContainer from "./MainContainer";
 
 const Browse = () => {
   useFetchNowPlaying(); 
@@ -15,6 +16,7 @@ const Browse = () => {
       
       */}
       <h1>Browse</h1>
+      <MainContainer />
     </div>
   );
 };
