@@ -15,7 +15,6 @@ const Browse = () => {
         - cards * n  
       
       */}
-      <h1>Browse</h1>
       <MainContainer />
     </div>
   );
