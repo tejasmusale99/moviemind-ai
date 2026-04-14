@@ -4,7 +4,7 @@ import MainContainer from "./MainContainer";
 const Browse = () => {
   useFetchNowPlaying(); 
   return (
-    <div className="browse">
+    <div className="browse w-screen">
       {/* 
       
     MainContainer

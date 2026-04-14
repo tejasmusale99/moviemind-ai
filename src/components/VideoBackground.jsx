@@ -1,38 +1,17 @@
-import React, { useEffect } from "react";
-import { movieOptions } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
-import { addTrailer } from "../utils/moviesSlice";
+import { useSelector } from "react-redux";
+import { useMovieTrailer } from "../hooks/useMovieTrailer";
 
 const VideoBackground = ({ movieId }) => {
-  const dispatch = useDispatch();
-  const trailerVideoKey = useSelector((store)=> store.movies.trailer?.key)
-  console.log(movieId);
-
-  const getMoviesAndVideoUrl = async () => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-      movieOptions,
-    );
-    const jsonData = await data.json();
-    const VideoData = jsonData.results;
-    const filtredData = VideoData.filter(
-      (trailer) => trailer.type === "Trailer",
-    );
-    const trailerVideo = filtredData.length ? filtredData[0] : VideoData[0];
-    console.log(trailerVideo);
-    dispatch(addTrailer(trailerVideo))
-  };
-
-  useEffect(() => {
-    getMoviesAndVideoUrl();
-  }, []);
+  const trailerVideoKey = useSelector((store) => store.movies.trailer?.key);
+  useMovieTrailer(movieId);
 
   return (
-    <div className="">
+    <div className="absolute top-0 left-0 w-screen aspect-video h-full -z-10 overflow-hidden">
       <iframe
-        src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+        className="absolute top-1/2 left-1/2 w-[120%] h-[120%] -translate-x-1/2 -translate-y-1/2"
+        src={`https://www.youtube.com/embed/${trailerVideoKey}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideoKey}`}
         title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="autoplay; encrypted-media"
       ></iframe>
     </div>
   );

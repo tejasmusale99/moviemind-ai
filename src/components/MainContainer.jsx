@@ -11,10 +11,10 @@ const MainContainer = () => {
   // console.log(mainMovie);
   const { title, overview, id } = mainMovie;
   return (
-    <div>
-      <VideoTitle title={title} overview={overview} />
-      <VideoBackground movieId = {id}/>
-    </div>
+<div className="relative w-screen h-[100vh] overflow-hidden">
+  <VideoTitle title={title} overview={overview} />
+  <VideoBackground movieId={id} />
+</div>
   );
 };
 

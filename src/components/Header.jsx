@@ -66,7 +66,7 @@ const Header = () => {
             className="w-10 h-10 object-cover rounded-sm"
           />
 
-          <h3>{Userstore?.displayName}</h3>
+          <h3 className="text-white">{Userstore?.displayName}</h3>
           <button
             className="bg-red-600 px-4 py-2 rounded text-white font-semibold cursor-pointer text-sm"
             onClick={handleSignOut}
