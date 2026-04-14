@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { movieOptions } from "../utils/constants";
+import { log } from "firebase/firestore/pipelines";
 
 const VideoBackground = ({ movieId }) => {
   console.log(movieId);
@@ -11,8 +12,10 @@ const VideoBackground = ({ movieId }) => {
     );
     const jsonData = await data.json();
     const VideoData = jsonData.results;
-    const trailerFilterVideo = VideoData.filter((trailer) => trailer.type === "Trailer");
-    console.log(trailerFilterVideo[0]);
+    const filtredData = VideoData.filter((trailer) => trailer.type === "Trailer");
+    const trailerVideo = filtredData.length ? filtredData[0] : VideoData[0];
+    console.log(trailerVideo);
+    
   };
 
   useEffect(() => {
