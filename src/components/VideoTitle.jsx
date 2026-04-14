@@ -1,5 +1,3 @@
-import React from 'react'
-
 const VideoTitle = ({ title, overview }) => {
   return (
     <div className='px-36 pt-36 space-y-4 absolute z-10 '>

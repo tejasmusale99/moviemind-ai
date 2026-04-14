@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react'
-import { movieOptions } from '../utils/constants';
+import React, { useEffect } from "react";
+import { movieOptions } from "../utils/constants";
 
-const VideoBackground = ({movieId}) => {
+const VideoBackground = ({ movieId }) => {
   console.log(movieId);
- 
-  const getVideoUrl = async () => {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`, movieOptions)
+
+  const getMoviesAndVideoUrl = async () => {
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+      movieOptions,
+    );
     const jsonData = await data.json();
-    console.log(jsonData);
-  }
+    const VideoData = jsonData.results;
+    const trailerFilterVideo = VideoData.filter((trailer) => trailer.type === "Trailer");
+    console.log(trailerFilterVideo[0]);
+  };
 
-  useEffect(()=>{
-    getVideoUrl();
-  },[])
+  useEffect(() => {
+    getMoviesAndVideoUrl();
+  }, []);
 
-  return (
-    <h1>{movieId}</h1>
-  )
-}
+  return <h1>{movieId}</h1>;
+};
 
-export default VideoBackground
+export default VideoBackground;
