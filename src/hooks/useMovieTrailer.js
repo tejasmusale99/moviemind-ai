@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export const useMovieTrailer = (movieId) => {
      const dispatch = useDispatch();
   
-  console.log(movieId);
+  // console.log(movieId);
 
   const getMoviesAndVideoUrl = async () => {
     const data = await fetch(
