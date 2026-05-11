@@ -1,8 +1,10 @@
 import useFetchNowPlaying from "../hooks/useFetchNowPlaying";
+import useFetchPopular from "../hooks/useFetchPopular";
 import MainContainer from "./MainContainer";
 
 const Browse = () => {
   useFetchNowPlaying(); 
+  useFetchPopular(); 
   return (
     <div className="browse w-full">
       {/* 
