@@ -53,7 +53,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-full px-10 py-5 flex justify-between items-center z-20">
+    <div className="absolute top-0 left-0 w-full px-10 py-5 flex justify-between items-center z-50 bg-gradient-to-b from-black/80 to-transparent">
       <Link to={"/"}>
         <img src={logo} alt="logo" className="w-36 cursor-pointer" />
       </Link>
