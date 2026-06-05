@@ -60,6 +60,9 @@ const Header = () => {
 
       {Userstore && (
         <div className="flex items-center gap-4">
+          <button className="bg-blue-500 p-2 rounded text-white font-semibold cursor-pointer text-sm">
+            GPTSearch
+          </button>
           <img
             src={Userstore?.photoURL || userAvtar}
             alt="userAvatar"
