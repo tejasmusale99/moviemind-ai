@@ -1,6 +1,6 @@
 const GptSearch = () => {
     return(
-        <div>Gpt Search</div>
+        <div className="text-white relative z-20">Gpt Search</div>
     )
 }
 

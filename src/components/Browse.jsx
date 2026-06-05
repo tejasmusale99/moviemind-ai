@@ -3,25 +3,17 @@ import useFetchPopular from "../hooks/useFetchPopular";
 import useFetchTopRated from "../hooks/useFetchTopRated";
 import useFetchUpcoming from "../hooks/useFetchUpcoming";
 import MainContainer from "./MainContainer";
+import GptSearch from "./GptSearch";
 
 const Browse = () => {
-  useFetchNowPlaying(); 
-  useFetchPopular(); 
+  useFetchNowPlaying();
+  useFetchPopular();
   useFetchTopRated();
-  useFetchUpcoming()
+  useFetchUpcoming();
   return (
     <div className="browse w-full">
-      {/* 
-      
-    MainContainer
-      - VideoBackground
-      - VideoTitle
-    SecondaryContainer
-      - MovieList * n
-        - cards * n  
-      
-      */}
       <MainContainer />
+      <GptSearch />
     </div>
   );
 };

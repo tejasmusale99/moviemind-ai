@@ -27,6 +27,10 @@ const Header = () => {
       });
   };
 
+  const handleGptSearchClick = () => {
+    // Toggle for GPT search click
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -60,8 +64,8 @@ const Header = () => {
 
       {Userstore && (
         <div className="flex items-center gap-4">
-          <button className="bg-blue-500 p-2 rounded text-white font-semibold cursor-pointer text-sm">
-            GPTSearch
+          <button className="bg-blue-500 p-2 rounded text-white font-semibold cursor-pointer text-sm" onClick={handleGptSearchClick}>
+            GPT Search
           </button>
           <img
             src={Userstore?.photoURL || userAvtar}
