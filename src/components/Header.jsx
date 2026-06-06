@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { addUser } from "../utils/userSlice";
 import { removeUser } from "../utils/userSlice";
 import { userAvtar } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const Navigate = useNavigate();
@@ -29,6 +30,7 @@ const Header = () => {
 
   const handleGptSearchClick = () => {
     // Toggle for GPT search click
+    dispatch(toggleGptSearchView());
   };
 
   useEffect(() => {

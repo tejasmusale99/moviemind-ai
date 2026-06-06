@@ -4,16 +4,19 @@ import useFetchTopRated from "../hooks/useFetchTopRated";
 import useFetchUpcoming from "../hooks/useFetchUpcoming";
 import MainContainer from "./MainContainer";
 import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
   useFetchNowPlaying();
   useFetchPopular();
   useFetchTopRated();
   useFetchUpcoming();
+  const isGptSearchVisible = useSelector(
+  (state) => state.gpt.isGptSearchVisible
+);
   return (
     <div className="browse w-full">
-      <MainContainer />
-      <GptSearch />
+       {isGptSearchVisible ? <GptSearch /> : <MainContainer />}
     </div>
   );
 };
